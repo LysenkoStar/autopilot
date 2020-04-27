@@ -1,0 +1,45 @@
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "node_modules/font-awesome/scss/font-awesome";
+
+body {
+  .wrapper {
+    height: 100vh;
+    &.image {
+      background: url('../../public/images/main.jpeg') no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,.3);
+        z-index: 2;
+      }
+    }
+    .content {
+      position: relative;
+      z-index: 3;
+    }
+  }
+  .navbar {
+    margin-bottom: 40px;
+  }
+  .page-container {
+    position: relative;
+    min-height: calc(100vh - (150px + 96px));
+    .page-content {
+      padding-top: 40px;
+    }
+  }
+  footer {
+    background: #343a40;
+    padding: 40px 20px 30px;
+    color: #ddd;
+    margin-top: 40px;
+  }
+}

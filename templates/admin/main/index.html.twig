@@ -1,0 +1,63 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Автопилот | Панель управления{% endblock %}
+
+{% block body %}
+
+    <div class="page-content">
+        <div class="row">
+            <div class="col-md-4">
+                {{ user.username }}
+                <img src="{{ user.avatar }}" class="img-fluid rounded" alt="{{ user.username }}">
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-6">Текущий тариф:</div>
+                    <div class="col-6 text-right">Миль потрачено:</div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <h3 class="margin-top-none strong">«ИСПЫТАТЕЛЬ»</h3>
+                    </div>
+                    <div class="col-6 text-right">
+                        <h3 class="margin-top-none strong cursor-help" data-toggle="tooltip" title="1 миля  = 1 запуск команды для 1 подписчика (игрока). Администраторы не тарифицируются. На бесплатном тарифе вам доступно 750 миль на 1 месяц. Чтобы снять ограничение, перейдите на платный тариф">
+                            <span class="">0</span> / 750
+                        </h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">Получите неограниченное количество миль: </div>
+                    <div class="col-6 text-right">На балансе аккаунта: 0 руб.</div>
+                </div>
+                <div class="row">
+                    <span class="btn-group">
+                        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-1 fa-lg"></i>
+                            <div class="inline ">
+                                <span class="hidden-xs">Снять ограничение на месяц за 970 руб.</span>
+                                <span class="visible-xs">Купить Премиум за 970 руб.</span>
+                            </div>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu " role="menu">
+                            <li>
+                                <a title="Денежным переводом" href="https://vk.com/app6177183_-41103148#p=7399&amp;sid=589716147&amp;s=970&amp;a=1">
+                                <i class="fa fa-money text-success"></i> Денежным переводом</a>
+                            </li>
+                            <li>
+                                <a title="Списать с баланса аккаунта" href="javascript:void(0);" onclick="confirmRequired('Подтвердите, что вы действительно желаете приобрести 1 месяц тарифа «Премиум». Средства будут <b>списаны сразу же</b> с баланса вашего аккаунта, если на балансе есть необходимая сумма. <br><br>Если вы на тарифе «Испытатель», то тариф будет изменен на «Премиум». Если вы <b>уже на платном</b> тарифе, то он будет продлен <b>на ЕЩЁ 1 месяц</b>.   ', function () { window.location = '/account/premium';});">
+                                <i class="fa fa-vcard-o text-primary"></i> Списать с баланса аккаунта</a>
+                            </li>
+                            <li>
+                                <a title="Включить Автопродление" href="javascript:void(0);" onclick="auto_extend_tariff();">
+                                <i class="fa fa-rocket text-success"></i> Включить Автопродление</a>
+                            </li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

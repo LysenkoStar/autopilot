@@ -1,0 +1,32 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %} Автопилот | Настройки приложения {% endblock %}
+
+{% block body %}
+
+    {% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="mb-0 font-weight-bold">Настройки приложения</h3>
+            <small>Здесь вы можете изменить настройки приложения.</small>
+            <hr>
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+
+    {{ form_start(form) }}
+        {{ form_row(form.renew_rate) }}
+        {{ form_row(form.receive_notifications) }}
+    {{ form_end(form) }}
+
+{% endblock %}

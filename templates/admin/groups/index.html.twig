@@ -1,0 +1,94 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %} Автопилот | Управление группами {% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="mb-0 font-weight-bold">Список доступных сообществ</h3>
+            <small>Выберите сообщество, с которым собираетесь работать, и перейдите в нужный раздел.</small>
+            <hr>
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+    {#    Buttons group    #}
+    <div class="row mb-2">
+        <div class="col-md-12">
+            <a href="{{ path('group_update') }}" type="button" class="btn btn-primary btn-sm">
+                <i class="fa fa-refresh" aria-hidden="true"></i> Обновить
+            </a>
+        </div>
+    </div>
+
+    {% if groups|length > 0 %}
+        <ul class="list-group">
+        {% for group in groups %}
+            <li class="list-group-item d-flex justify-content-start align-items-center group-card" id="group_{{ group.VkId }}">
+                <div class="image-parent">
+                    <img src="{{ group.image }}" class="img-fluid rounded-circle" alt="{{ group.name }}">
+                </div>
+                <div class="flex-column ml-5">
+                        <span class="card-heading">{{ group.name }}</span>
+                        <div class="text-muted small">
+                            <span class="mr-3">ID: {{ group.VkId }}</span>
+                            <span class="mr-3">Участников: {{ group.membersCount }}</span>
+                        </div>
+                </div>
+                <div class="flex-column ml-auto">
+                    <div class="actions d-inline-block">
+                        {% if not group.connected %}
+                            <a href="{{ group.connect }}" class="btn btn-primary btn-sm"><i class="fa fa-plug" aria-hidden="true"></i> Подключить</a>
+                        {% else %}
+                            <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-comments-o" aria-hidden="true"></i> Команды</a>
+                            <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-book" aria-hidden="true"></i> Ресурсы</a>
+                            <a href="{{ path('group_settings', { group: group.VkId }) }}" class="btn btn-primary btn-sm"><i class="fa fa-wrench" aria-hidden="true"></i> Настройки</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>У Вас нет доступных групп для подключения</p>
+    {% endif %}
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            {% if maxPages > 1 %}
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination pagination-sm justify-content-center">
+                        {# `«` arrow  #}
+                        <li class="page-item {{ thisPage == 1 ? 'disabled' }}">
+                            <a href="{{ path('groups', {page: thisPage-1 < 1 ? 1 : thisPage-1}) }}" class="page-link" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        {# Render each page number #}
+                        {% for i in 1..maxPages %}
+                            <li class="page-item {{ thisPage == i ? 'active' }}">
+                                <a href="{{ path('groups', {page: i}) }}" class="page-link">{{ i }}</a>
+                            </li>
+                        {% endfor %}
+                        {# `»` arrow #}
+                        <li class="page-item {{ thisPage == maxPages ? 'disabled' }}">
+                            <a href="{{ path('groups', {page: thisPage+1 <= maxPages ? thisPage+1 : thisPage}) }}" class="page-link" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

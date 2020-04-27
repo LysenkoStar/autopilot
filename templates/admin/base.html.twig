@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Автопилот | Панель управления!{% endblock %}</title>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{{ path('admin') }}">
+                <i class="fa fa-plane fa-lg"></i>
+                Автопилот
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExample07">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('groups') }}"><i class="fa fa-users"></i> Сообщества</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('action') }}"><i class="fa fa-comments-o"></i> Команды</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" target="_blank" rel="noopener norefferer" href="https://vk.com/@skyautome-instructions">
+                            <i class="fa fa-question-circle "></i> Как пользоваться</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown_more" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Еще</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown_more">
+                            <a class="dropdown-item" href="/users">
+                                <i class="fa fa-user"></i> Игроки / Подписчики
+                            </a>
+                            <a class="dropdown-item" href="/finances">
+                                <i class="fa fa-credit-card-alt"></i> Финансы и счета
+                            </a>
+                            <a class="dropdown-item" href="{{ path('resources') }}">
+                                <i class="fa fa-book"></i> Ресурсы / База данных
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">
+                                <i class="fa fa-briefcase "></i> Сотрудники
+                            </a>
+                            <a class="dropdown-item" href="{{ path('error') }}">
+                                <i class="fa fa-exclamation-triangle"></i> Ошибки действий
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ path('settings') }}">
+                                <i class="fa fa-cogs"></i> Настройки
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ path('app_logout') }}"><i class="fa fa-sign-out"></i> Выйти</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-md-0">
+                    <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                </form>
+            </div>
+        </div>
+    </nav>
+
+        <div class="container page-container">
+            {% block body %}
+
+            {% endblock %}
+        </div>
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+
+        <footer class="">
+            <div class="container text-center">
+                <p> Спроектировано и создано командой <a href="https://skyjoom.com" rel="noopener noreferrer" target="_blank">SkyJoom</a>
+                    | <a href="https://vk.com/skyautome" rel="noopener noreferrer" target="_blank">Сообщество сервиса ВКонтакте <i class="fa fa-link"></i> </a></p>
+            </div>
+        </footer>
+
+    </body>
+</html>

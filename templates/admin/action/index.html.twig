@@ -1,0 +1,55 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %} Автопилот | Управление командами {% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="mb-0 font-weight-bold">Список команд</h3>
+            <small>Список сценариев работы. Команда реагирует на события, дополнительно проверяет условия и выполняет действия, если все условия подходят.</small>
+            <hr>
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus" aria-hidden="true"></i> Добавить команду</a>
+            <div class="btn-group">
+                <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-check" aria-hidden="true"></i> Выбрать сообщество
+                </button>
+                <div class="dropdown-menu">
+                    {% for group in enabledGroups %}
+                        <a class="dropdown-item" href="#" data-id="{{ group.id }}">
+                            <img src="{{ group.image }}" class="img-fluid rounded-circle pr-2" alt="{{ group.name }}" style="width: 30px;">
+                            <span style="font-size: 14px;">{{ group.name }}</span>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-sort-amount-asc" aria-hidden="true"></i> Сортировать по
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
+            <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-search" aria-hidden="true"></i> Найти</a>
+        </div>
+    </div>
+
+
+{% endblock %}
